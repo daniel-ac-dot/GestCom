@@ -1,0 +1,152 @@
+/* --- Variables de Diseño (Mantenemos la misma paleta de GestCom) --- */
+:root {
+    --bg-light: #ffffff;
+    --input-bg: #f2eeed;
+    --btn-blue: #3b93ff;
+    --btn-hover: #2a7be6;
+    --text-dark: #333333;
+    --text-muted: #666666;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: url(../assets/img/Fondo-torre.webp) no-repeat center center/cover;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* --- Contenedor Reducido y Simplificado (Un solo panel) --- */
+.login-container {
+    background-color: var(--bg-light);
+    width: 100%;
+    max-width: 400px; /* Ancho optimizado para una sola tarjeta limpia */
+    min-height: 550px;
+    border-radius: 4px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 30px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+}
+
+/* --- Botón Retroceder --- */
+.retroceder-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: var(--text-muted);
+    cursor: pointer;
+}
+
+/* --- Envoltura del Contenido Interior --- */
+.login-wrapper {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* --- Cabecera del Personaje --- */
+.character-header {
+    font-size: 5rem; /* Ajustable cuando cambies el emoji por tu imagen renderizada */
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.login-wrapper h1 {
+    font-size: 2.2rem;
+    font-weight: 500;
+    margin-bottom: 30px;
+    color: var(--text-dark);
+}
+
+/* --- Form Inputs (Idénticos al Registro) --- */
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 14px 14px 45px;
+    background-color: var(--input-bg);
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    outline: none;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+    transition: background 0.2s;
+}
+
+.input-group input:focus {
+    background-color: #fdfcfc;
+}
+
+/* --- Botón Primario --- */
+.btn-primary {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--btn-blue);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 10px;
+    box-shadow: 0 4px 10px rgba(59, 147, 255, 0.4);
+    transition: background 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: var(--btn-hover);
+}
+
+/* --- Texto Inferior (o crea una cuenta...) --- */
+.footer-text {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 25px;
+}
+
+.footer-text a {
+    color: var(--text-dark);
+    text-decoration: underline;
+}
+
+/* --- 3. DISEÑO RESPONSIVE --- */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .login-container {
+        padding: 40px 20px;
+        min-height: auto;
+    }
+
+    .character-header {
+        font-size: 4rem;
+    }
+}
