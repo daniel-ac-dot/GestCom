@@ -1,0 +1,203 @@
+/* --- Variables de Diseño --- */
+:root {
+    --bg-dark: #19162c;
+    --bg-light: #ffffff;
+    --input-bg: #f2eeed;
+    --btn-blue: #3b93ff;
+    --btn-hover: #2a7be6;
+    --text-dark: #333333;
+    --text-muted: #666666;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: url(/Frontend/assets/img/Fondo-torre.webp) no-repeat center center/cover;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* --- Contenedor Principal (Escritorio) --- */
+.main-container {
+    background-color: var(--bg-light);
+    display: flex;
+    width: 100%;
+    max-width: 900px;
+    height: 600px;
+    border-radius: 4px; /*borde sutil */
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+}
+
+/* --- Columna del Formulario --- */
+.form-side {
+    flex: 1;
+    padding: 40px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.retroceder-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: var(--text-muted);
+    cursor: pointer;
+}
+
+.form-wrapper {
+    max-width: 320px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.form-wrapper h1 {
+    font-size: 2.2rem;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 10px;
+    color: var(--text-dark);
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+
+.subtitle a {
+    color: var(--text-dark);
+    text-decoration: underline;
+}
+
+/* Form Inputs con sombreado interno leve */
+.input-group {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.input-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 14px 14px 45px;
+    background-color: var(--input-bg);
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    outline: none;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05); /* Simula el relieve del mockup */
+    transition: background 0.2s;
+}
+
+.input-group input:focus {
+    background-color: #fdfcfc;
+}
+
+/* Botón con sombra proyectada */
+.btn-primary {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--btn-blue);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 15px;
+    box-shadow: 0 4px 10px rgba(59, 147, 255, 0.4);
+    transition: background 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: var(--btn-hover);
+}
+
+/* --- Columna Informativa Oscura --- */
+.info-side {
+    flex: 1;
+    background-color: var(--bg-dark);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    text-align: center;
+}
+
+.info-wrapper {
+    max-width: 280px;
+}
+
+.logo-placeholder {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.loguito {
+    width: 150px;
+    height: auto;
+}
+
+.info-text {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin-bottom: 30px;
+    opacity: 0.8;
+}
+
+.character-placeholder {
+    font-size: 5rem; /* Temporal hasta que pongas el gráfico del muñeco */
+}
+
+/* --- 3. DISEÑO RESPONSIVE (Móviles y Tablets) --- */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .main-container {
+        flex-direction: column; /* Apila las columnas verticalmente */
+        height: auto;
+        max-width: 450px;
+    }
+
+    /* En móvil, para que se parezca a las Secciones 2 y 3 de tu imagen */
+    .info-side {
+        order: -1; /* Pone el panel oscuro arriba (opcional, puedes quitarlo si prefieres el formulario primero) */
+        padding: 30px 20px;
+    }
+
+    .character-placeholder {
+        font-size: 3.5rem;
+    }
+
+    .form-side {
+        padding: 30px 20px;
+    }
+}
