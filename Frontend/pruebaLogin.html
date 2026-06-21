@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Prueba Login</title>
+</head>
+<body>
+
+    <h2>Prueba Login GestCom</h2>
+
+    <pre id="resultado"></pre>
+
+    <input
+    type="email"
+    id="correo"
+    placeholder="Correo">
+
+    <input
+    type="password"
+    id="password"
+    placeholder="Contraseña">
+
+    <button onclick="probarLogin()">
+    Iniciar sesión
+    </button>
+
+    <script>
+
+        async function probarLogin() {
+
+            const correo =
+                document.getElementById("correo").value;
+            
+            const password =
+                document.getElementById("password").value;
+
+            const respuesta =
+                await fetch(
+                    "http://localhost:3000/api/auth/login",
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            correo, password
+                        })
+                    }
+                );
+
+            const datos =
+                await respuesta.json();
+
+            document.getElementById("resultado")
+                .textContent =
+                JSON.stringify(datos, null, 2);
+
+        }
+
+    </script>
+
+</body>
+</html>
