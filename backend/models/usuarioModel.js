@@ -12,6 +12,38 @@ const buscarPorCorreo = (correo, callback) => {
     );
 };
 
+const crearUsuario = (usuario, callback) => {
+
+    const sql = `
+        INSERT INTO usuarios
+        (
+            nombre,
+            apellido,
+            fecha_registro,
+            correo_usuario,
+            password,
+            estado,
+            id_rol
+        )
+        VALUES (?, ?, CURDATE(), ?, ?, ?, ?)
+    `;
+
+    conexion.query(
+        sql,
+        [
+            usuario.nombre,
+            usuario.apellido,
+            usuario.correo_usuario,
+            usuario.password,
+            usuario.estado,
+            usuario.id_rol
+        ],
+        callback
+    );
+
+};
+
 module.exports = {
-    buscarPorCorreo
+    buscarPorCorreo,
+    crearUsuario
 };

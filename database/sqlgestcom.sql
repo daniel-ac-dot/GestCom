@@ -1,46 +1,35 @@
-create database gestcom;
+CREATE DATABASE IF NOT EXISTS gestcom;
 use gestcom;
+
+CREATE TABLE roles (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(30) NOT NULL UNIQUE
+);
 
 CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(20) NOT NULL,
-    apellido VARCHAR(20) NOT NULL,
-    fecha_nacimiento DATE NOT NULL,
+    nombre VARCHAR(50) NOT NULL,
+    apellido VARCHAR(50) NOT NULL,
     fecha_registro DATE NOT NULL,
-    correo_usuario VARCHAR(40) NOT NULL UNIQUE,
-    numero_telefonico VARCHAR(15) NOT NULL,
-    nacionalidad VARCHAR(20) NOT NULL,
-    genero CHAR(1) NOT NULL,
+    correo_usuario VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     estado CHAR(1) NOT NULL,
-    id_rol INT NOT NULL
+    id_rol INT NOT NULL,
+    CONSTRAINT chk_usuarios_estado CHECK (estado IN ('A', 'I')),
+    CONSTRAINT fk_usuarios_roles FOREIGN KEY (id_rol) REFERENCES roles(id)
 );
 
-INSERT INTO usuarios
-(
-nombre,
-apellido,
-fecha_nacimiento,
-fecha_registro,
-correo_usuario,
-numero_telefonico,
-nacionalidad,
-genero,
-password,
-estado,
-id_rol
-)
-VALUES
-(
-'Daniel',
-'Acuña',
-'2000-01-01',
-CURDATE(),
-'daniel@gmail.com',
-'3001234567',
-'Colombiana',
-'M',
-'123456',
-'A',
-1
+CREATE TABLE perfil_usuario (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT NOT NULL UNIQUE,
+    fecha_nacimiento DATE NULL,
+    numero_telefonico VARCHAR(15) NULL,
+    nacionalidad VARCHAR(30) NULL,
+    genero CHAR(1) NULL,
+    fecha_actualizacion DATETIME NULL,
+    CONSTRAINT chk_perfil_genero CHECK (genero IS NULL OR genero IN ('M', 'F', 'O')),
+    CONSTRAINT fk_perfil_usuario FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
 );
+
+
+
