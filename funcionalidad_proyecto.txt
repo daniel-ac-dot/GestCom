@@ -1,0 +1,143 @@
+FUNCIONALIDAD DE ARCHIVOS Y CARPETAS DEL PROYECTO GESTCOM
+
+Descripcion general
+GestCom es un sistema de gestion financiera y administrativa para pequenas empresas. En su estado actual tiene una base inicial de autenticacion, con pantallas de login y registro, un backend en Node.js/Express y una base de datos MySQL.
+
+
+CARPETAS PRINCIPALES
+
+Frontend/
+Carpeta que contiene la interfaz visual del proyecto. Incluye paginas HTML, estilos CSS e imagenes usadas en las pantallas de login y registro.
+
+backend/
+Carpeta que contiene el servidor de la aplicacion. Maneja la conexion con la base de datos, las rutas HTTP, los controladores y los modelos relacionados con autenticacion de usuarios.
+
+database/
+Carpeta que contiene el script SQL para crear la base de datos, tablas, relaciones y triggers del sistema.
+
+docs/
+Carpeta de documentacion tecnica y planificacion. Explica el desarrollo del modulo de autenticacion y la implementacion de triggers SQL.
+
+node_modules/
+Carpeta generada por npm al instalar dependencias. Contiene librerias externas como express, mysql2, bcrypt, cors y dotenv. No se edita manualmente ni se documenta archivo por archivo porque es codigo de terceros.
+
+.git/
+Carpeta interna de Git donde se guarda el historial y la configuracion del repositorio. No forma parte directa del codigo funcional de la aplicacion.
+
+
+ARCHIVOS DE LA RAIZ DEL PROYECTO
+
+README.md
+Documento principal del proyecto. Describe que GestCom es un sistema de gestion financiera y administrativa para pequenas empresas, lista tecnologias usadas y muestra el estado actual del desarrollo por fases.
+
+package.json
+Archivo de configuracion de Node.js/npm. Define el nombre del proyecto, version, descripcion, tipo de modulo y dependencias necesarias para el backend: bcrypt, cors, dotenv, express y mysql2.
+
+package-lock.json
+Archivo generado automaticamente por npm. Guarda las versiones exactas de las dependencias instaladas para que el proyecto pueda instalarse de forma consistente en otros equipos.
+
+.gitignore
+Indica archivos y carpetas que Git debe ignorar, como node_modules, archivos .env y AGENTS.md. Sirve para evitar subir dependencias, credenciales o configuraciones locales al repositorio.
+
+funcionalidad_proyecto.txt
+Archivo de documentacion que resume la funcion de cada carpeta y archivo relevante del proyecto.
+
+
+CARPETA Frontend/
+
+Frontend/login.html
+Pagina visual de inicio de sesion. Muestra un formulario con correo y contrasena, un boton para iniciar sesion y un enlace hacia la pagina de registro. Actualmente es una interfaz estatica y no tiene fetch conectado al backend.
+
+Frontend/register.html
+Pagina visual de registro de usuario. Contiene campos para nombre, apellido, correo, contrasena y confirmacion de contrasena. Tambien muestra una seccion informativa con logo e icono visual. Actualmente es una interfaz estatica y no envia datos al backend por JavaScript.
+
+Frontend/pruebaLogin.html
+Pagina sencilla para probar manualmente el endpoint de login del backend. Lee correo y contrasena desde inputs, envia una peticion POST a http://localhost:3000/api/auth/login y muestra la respuesta JSON en pantalla.
+
+Frontend/pruebaRegister.html
+Pagina sencilla para probar manualmente el endpoint de registro del backend. Valida que las contrasenas coincidan, envia nombre, apellido, correo_usuario y password a http://localhost:3000/api/auth/register, y muestra la respuesta JSON en pantalla.
+
+Frontend/landin-page.html
+Archivo reservado para la landing page o pagina inicial del proyecto. Actualmente esta vacio.
+
+
+CARPETA Frontend/css/
+
+Frontend/css/login.css
+Archivo de estilos de la pantalla de login. Define colores, fondo, contenedor principal, inputs, boton, texto inferior y reglas responsive para dispositivos pequenos.
+
+Frontend/css/register-style.css
+Archivo de estilos de la pantalla de registro. Define el diseno de dos columnas, formulario, panel informativo, logo, inputs, boton, fondo y comportamiento responsive para moviles y tablets.
+
+
+CARPETA Frontend/assets/
+
+Frontend/assets/
+Carpeta destinada a recursos estaticos del frontend, como imagenes, iconos y fondos.
+
+Frontend/assets/img/
+Carpeta que almacena imagenes usadas por las paginas HTML y estilos CSS.
+
+Frontend/assets/img/iconGestCom.png
+Imagen usada como logo de GestCom en la pantalla de registro.
+
+Frontend/assets/img/Fondo-torre.webp
+Imagen de fondo usada por las pantallas de login y registro mediante los archivos CSS.
+
+
+CARPETA backend/
+
+backend/server.js
+Archivo principal del servidor. Crea una aplicacion Express, activa CORS, permite recibir JSON, define una ruta raiz de prueba y conecta las rutas de autenticacion bajo /api/auth. El servidor escucha en el puerto 3000.
+
+backend/hash.js
+Script auxiliar para generar un hash bcrypt de una contrasena de prueba. Sirve para pruebas o para entender como se cifra una contrasena antes de guardarla.
+
+
+CARPETA backend/config/
+
+backend/config/db.js
+Archivo de conexion a la base de datos MySQL. Usa mysql2 para conectarse al host local con el usuario root y la base de datos gestcom. Exporta la conexion para que otros archivos puedan ejecutar consultas.
+
+
+CARPETA backend/controllers/
+
+backend/controllers/authController.js
+Controlador de autenticacion. Contiene la logica de login y registro. En login busca el usuario por correo, compara la contrasena usando bcrypt y devuelve los datos del usuario si las credenciales son correctas. En registro valida campos, valida correo, valida longitud de contrasena, verifica que el correo no exista, cifra la contrasena y crea el usuario con estado activo y rol Cliente.
+
+
+CARPETA backend/models/
+
+backend/models/usuarioModel.js
+Modelo de usuario. Centraliza las consultas SQL relacionadas con usuarios. Permite buscar un usuario por correo y crear un nuevo usuario en la tabla usuarios, asignando el rol mediante una consulta a la tabla roles.
+
+
+CARPETA backend/routes/
+
+backend/routes/authRoutes.js
+Archivo de rutas de autenticacion. Define una ruta GET /prueba para verificar que las rutas funcionan, una ruta POST /login para iniciar sesion y una ruta POST /register para registrar usuarios.
+
+
+CARPETA database/
+
+database/sqlgestcom.sql
+Script SQL principal de la base de datos. Crea la base gestcom, las tablas roles, usuarios y perfil_usuario. Inserta roles iniciales Administrador y Cliente. Tambien crea triggers para generar automaticamente un perfil cuando se registra un usuario y actualizar la fecha de modificacion del perfil.
+
+
+CARPETA docs/
+
+docs/plan-modulo-auth.md
+Documento de planificacion del modulo de autenticacion. Explica el objetivo del login y registro, la separacion entre datos de cuenta y perfil de usuario, el flujo esperado de registro/login, cambios tecnicos planeados y pendientes futuros como JWT, dashboard y rutas protegidas.
+
+docs/plan-triggers-auth.md
+Documento de planificacion para triggers SQL. Explica el trigger que crea automaticamente el perfil de usuario despues de insertar un usuario y el trigger que actualiza fecha_actualizacion antes de modificar un perfil.
+
+
+RESUMEN DEL FLUJO ACTUAL
+
+1. El frontend contiene pantallas visuales de login y registro.
+2. Los archivos de prueba del frontend permiten enviar datos al backend usando fetch.
+3. El backend recibe peticiones en /api/auth/login y /api/auth/register.
+4. El controlador valida datos, cifra o compara contrasenas con bcrypt y llama al modelo.
+5. El modelo ejecuta consultas SQL usando la conexion definida en backend/config/db.js.
+6. La base de datos guarda usuarios, roles y perfiles, y usa triggers para automatizar datos del perfil.

@@ -1,12 +1,16 @@
 CREATE DATABASE IF NOT EXISTS gestcom;
 use gestcom;
 
-CREATE TABLE roles (
+CREATE TABLE IF NOT EXISTS roles (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(30) NOT NULL UNIQUE
 );
 
-CREATE TABLE usuarios (
+INSERT IGNORE INTO roles (id, nombre) VALUES
+(1, 'Administrador'),
+(2, 'Cliente');
+
+CREATE TABLE IF NOT EXISTS usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     apellido VARCHAR(50) NOT NULL,
@@ -19,7 +23,7 @@ CREATE TABLE usuarios (
     CONSTRAINT fk_usuarios_roles FOREIGN KEY (id_rol) REFERENCES roles(id)
 );
 
-CREATE TABLE perfil_usuario (
+CREATE TABLE IF NOT EXISTS perfil_usuario (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_usuario INT NOT NULL UNIQUE,
     fecha_nacimiento DATE NULL,
@@ -31,5 +35,24 @@ CREATE TABLE perfil_usuario (
     CONSTRAINT fk_perfil_usuario FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
 );
 
+DROP TRIGGER IF EXISTS trg_usuarios_after_insert_crear_perfil;
+DROP TRIGGER IF EXISTS trg_perfil_usuario_before_update_fecha;
 
+DELIMITER //
 
+CREATE TRIGGER trg_usuarios_after_insert_crear_perfil
+AFTER INSERT ON usuarios
+FOR EACH ROW
+BEGIN
+    INSERT INTO perfil_usuario (id_usuario)
+    VALUES (NEW.id);
+END//
+
+CREATE TRIGGER trg_perfil_usuario_before_update_fecha
+BEFORE UPDATE ON perfil_usuario
+FOR EACH ROW
+BEGIN
+    SET NEW.fecha_actualizacion = NOW();
+END//
+
+DELIMITER ;

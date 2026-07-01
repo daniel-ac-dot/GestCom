@@ -8,28 +8,17 @@
 
 <body>
 
-    <h2>Registro de Usuario - GestCom</h2>
+    <h2>Prueba Registro Basico - GestCom</h2>
 
     <input type="text" id="nombre" placeholder="Nombre"><br><br>
 
     <input type="text" id="apellido" placeholder="Apellido"><br><br>
 
-    <input type="date" id="fecha_nacimiento"><br><br>
-
     <input type="email" id="correo_usuario" placeholder="Correo"><br><br>
 
-    <input type="text" id="numero_telefonico" placeholder="Teléfono"><br><br>
-
-    <input type="text" id="nacionalidad" placeholder="Nacionalidad"><br><br>
-
-    <select id="genero">
-        <option value="M">Masculino</option>
-        <option value="F">Femenino</option>
-    </select>
-
-    <br><br>
-
     <input type="password" id="password" placeholder="Contraseña"><br><br>
+
+    <input type="password" id="confirmar_password" placeholder="Confirmar contraseña"><br><br>
 
     <button onclick="registrar()">
         Registrar Usuario
@@ -41,23 +30,29 @@
 
         async function registrar() {
 
+            const password = document.getElementById("password").value;
+
+            const confirmarPassword =
+                document.getElementById("confirmar_password").value;
+
+            if (password !== confirmarPassword) {
+                document.getElementById("resultado").textContent =
+                    JSON.stringify({
+                        mensaje: "Las contraseñas no coinciden"
+                    }, null, 2);
+
+                return;
+            }
+
             const usuario = {
 
                 nombre: document.getElementById("nombre").value,
 
                 apellido: document.getElementById("apellido").value,
 
-                fecha_nacimiento: document.getElementById("fecha_nacimiento").value,
-
                 correo_usuario: document.getElementById("correo_usuario").value,
 
-                numero_telefonico: document.getElementById("numero_telefonico").value,
-
-                nacionalidad: document.getElementById("nacionalidad").value,
-
-                genero: document.getElementById("genero").value,
-
-                password: document.getElementById("password").value
+                password
 
             };
 

@@ -102,7 +102,7 @@ const register = (req, res) => {
                 correo_usuario,
                 password: passwordHash,
                 estado: "A",
-                id_rol: 2
+                rol: "Cliente"
             };
 
             Usuario.crearUsuario(

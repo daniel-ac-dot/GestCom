@@ -25,7 +25,15 @@ const crearUsuario = (usuario, callback) => {
             estado,
             id_rol
         )
-        VALUES (?, ?, CURDATE(), ?, ?, ?, ?)
+        VALUES (
+            ?,
+            ?,
+            CURDATE(),
+            ?,
+            ?,
+            ?,
+            (SELECT id FROM roles WHERE nombre = ? LIMIT 1)
+        )
     `;
 
     conexion.query(
@@ -36,7 +44,7 @@ const crearUsuario = (usuario, callback) => {
             usuario.correo_usuario,
             usuario.password,
             usuario.estado,
-            usuario.id_rol
+            usuario.rol
         ],
         callback
     );
