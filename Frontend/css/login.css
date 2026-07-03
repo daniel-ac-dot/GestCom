@@ -49,6 +49,24 @@ body {
     font-size: 16px;
     color: var(--text-muted);
     cursor: pointer;
+    text-decoration: none;
+}
+
+.home-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: var(--text-muted);
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.home-btn:hover {
+    color: var(--btn-blue);
 }
 
 /* --- Envoltura del Contenido Interior --- */

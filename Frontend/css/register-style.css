@@ -57,6 +57,24 @@ body {
     font-size: 16px;
     color: var(--text-muted);
     cursor: pointer;
+    text-decoration: none;
+}
+
+.home-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: var(--text-muted);
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.home-btn:hover {
+    color: var(--btn-hover);
 }
 
 .form-wrapper {
@@ -151,17 +169,14 @@ body {
 }
 
 .logo-placeholder {
-    width: 80px;
-    height: 80px;
     margin: 0 auto 60px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-weight: bold;
 }
 
 .loguito {
-    width: 150px;
+    max-width: 150px;
     height: auto;
 }
 
