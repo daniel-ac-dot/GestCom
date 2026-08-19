@@ -188,7 +188,7 @@ body {
 }
 
 .character-placeholder {
-    font-size: 5rem; /* Temporal hasta que pongas el gráfico del muñeco */
+    font-size: 5rem; /* Temporal hasta poner el dibujo del muñeco */
 }
 
 /* --- 3. DISEÑO RESPONSIVE (Móviles y Tablets) --- */
@@ -205,7 +205,7 @@ body {
 
     /* En móvil, para que se parezca a las Secciones 2 y 3 de tu imagen */
     .info-side {
-        order: -1; /* Pone el panel oscuro arriba (opcional, puedes quitarlo si prefieres el formulario primero) */
+        order: -1; /* Pone el panel oscuro arriba (opcional, quitarlo para que quede el formulario primero) */
         padding: 30px 20px;
     }
 

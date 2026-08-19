@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GestCom — Inicio</title>
+  <link rel="stylesheet" href="../../css/inicio-acceso.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <main class="inicio-page">
+
+    <!-- =========================
+         PANEL IZQUIERDO — MARCA
+    ========================= -->
+    <section class="inicio-brand">
+      <div class="inicio-brand__top">
+        <div class="inicio-logo">
+          <img src="../../assets/img/logoGets.png" alt="">
+          <p class="inicio-logo__word"><span>GestCom</span></p>
+        </div>
+        <p class="inicio-tagline">Sistema de Gestión Comercial</p>
+        <hr class="inicio-brand__divider">
+      </div>
+
+      <svg class="inicio-illustration" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración carrito de compras">
+        <g fill="none" stroke="var(--inicio-teal-accent)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 20 L36 20 L54 90 L150 90 L166 42 L48 42"/>
+          <path d="M54 90 L46 100 L150 100"/>
+          <circle cx="66" cy="122" r="10" fill="#fff"/>
+          <circle cx="134" cy="122" r="10" fill="#fff"/>
+        </g>
+      </svg>
+
+      <div class="inicio-secure-card">
+        <svg class="inicio-secure-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2 L20 5 V11 C20 16 16.5 20 12 22 C7.5 20 4 16 4 11 V5 Z"/>
+          <path d="M9 12 L11 14 L15.5 9.5"/>
+        </svg>
+        <div>
+          <p class="inicio-secure-card__title">Acceso seguro</p>
+          <p class="inicio-secure-card__desc">Tus datos están protegidos</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         PANEL DERECHO — ACCESO
+    ========================= -->
+    <section class="inicio-access">
+      <header class="inicio-access__header">
+        <h1 class="inicio-access__title">Bienvenido</h1>
+        <p class="inicio-access__subtitle">Seleccione el método de acceso</p>
+      </header>
+
+      <div class="inicio-access__methods">
+
+        <!-- ===== Método: tarjeta ===== -->
+        <!-- Frontend puro: la detección real de tarjeta (lector NFC/RFID) y
+             el enrutamiento por rol se conectan aquí más adelante. -->
+        <article class="inicio-method-card" id="metodo-tarjeta">
+          <div class="inicio-method-card__icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="6" width="16" height="12" rx="2"/>
+              <path d="M18 10 L20 10"/>
+              <path d="M17 3.5 C19 4.5 20.5 6.5 20.5 9"/>
+              <path d="M17.5 5.8 C18.7 6.5 19.5 7.6 19.5 9"/>
+            </svg>
+          </div>
+          <h2 class="inicio-method-card__title">Acceso con tarjeta</h2>
+          <p class="inicio-method-card__desc">Pase su tarjeta por el lector</p>
+
+          <div class="inicio-reader">
+            <span class="inicio-reader__pulse"></span>
+            <svg class="inicio-reader__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+              <path d="M6 12 C6 8 8.7 5 12 5 C15.3 5 18 8 18 12" opacity="0.35"/>
+              <path d="M8 13 C8 10.2 9.8 8 12 8 C14.2 8 16 10.2 16 13" opacity="0.6"/>
+              <path d="M10 14 C10 12.3 10.9 11 12 11 C13.1 11 14 12.3 14 14"/>
+            </svg>
+          </div>
+
+
+          <p class="inicio-method-card__hint-sub">El sistema detectará su tarjeta automáticamente</p>
+        </article>
+
+        <!-- ===== Método: credenciales ===== -->
+        <!-- Frontend puro: al enviar, el backend debe validar credenciales
+             y devolver el rol para decidir a qué módulos redirigir. -->
+        <article class="inicio-method-card" id="metodo-credenciales">
+          <div class="inicio-method-card__icon-wrap">
+            <i class="fa-solid fa-key"></i>
+          </div>
+          <h2 class="inicio-method-card__title">Acceso con credenciales</h2>
+          <p class="inicio-method-card__desc">Usuario y contraseña</p>
+
+          <form class="inicio-form" id="form-credenciales" autocomplete="off">
+            <div class="inicio-form__group">
+              <label class="inicio-form__label" for="usuario">Usuario</label>
+              <div class="inicio-input-wrap">
+                <i class="inicio-input-wrap__icon fa-regular fa-user"></i>
+                <input type="text" id="usuario" name="usuario" placeholder="Ingrese su usuario">
+              </div>
+            </div>
+
+            <div class="inicio-form__group">
+              <label class="inicio-form__label" for="contrasena">Contraseña</label>
+              <div class="inicio-input-wrap">
+                <i class="inicio-input-wrap__icon fa-solid fa-lock"></i>
+                <input type="password" id="contrasena" name="contrasena" placeholder="Ingrese su contraseña">
+                <button type="button" class="inicio-input-wrap__toggle" id="toggle-contrasena" aria-label="Mostrar contraseña" aria-pressed="false">
+                  <i class="fa-regular fa-eye" id="toggle-contrasena-icon"></i>
+                </button>
+              </div>
+            </div>
+
+            <button type="submit" class="inicio-btn-primary">Ingresar</button>
+          </form>
+        </article>
+
+      </div>
+
+      <div class="inicio-divider">o</div>
+
+      <p class="inicio-help">
+        <svg class="inicio-help__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M9.5 9.2 C9.5 7.7 10.6 6.5 12 6.5 C13.4 6.5 14.5 7.6 14.5 9 C14.5 10.8 12 11 12 13.2"/>
+          <circle cx="12" cy="16.5" r="0.9" fill="currentColor"/>
+        </svg>
+        ¿Necesita ayuda? Contacte al <a href="#">administrador del sistema.</a>
+      </p>
+    </section>
+
+  </main>
+
+  <script src="../../js/auth/inicio.js"></script>
+</body>
+</html>
